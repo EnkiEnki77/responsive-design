@@ -7,34 +7,6 @@ Generally, navigations will be a ul wrapped in a nav to indicate that it is a na
 
 /* 
 ================
-Tag Hierarchy
-================
-*/
-
-/* 
-html:root
-    body
-        header.main-header
-            div.container
-                div.logo
-                    h1.logo-title
-                    p.logo-subtitle
-                nav.main-header-nav
-                    ul.main-header-nav-list
-                        li.main-header-nav-item.current 
-                            a.main-header-nav-link
-                        li.main-header-nav-item
-                            a.main-header-nav-link
-                        li.main-header-nav-item
-                            a.main-header-nav-link
-        main.main-content
-        footer.main-footer                   
-*/
-
-
-
-/* 
-================
 Fonts
 ================
 */
@@ -78,10 +50,13 @@ html{
 }
 
 body {
-    font-family: 'Arial', sans-serif;
     color: var(--body-text-color);
     line-height: 1.6;
     font: var(--body-font);
+}
+
+img{
+    max-width: 100%;
 }
 
 ul, ol {
@@ -90,6 +65,10 @@ ul, ol {
 
 a{
     text-decoration: none;;
+}
+
+strong{
+    font-weight: 700;
 }
 
 
@@ -148,6 +127,66 @@ Font & Color
 }
 
 
+/*main articles*/
+
+.post{
+    display: flex;
+    flex-direction: column;
+}
+
+.title-insights{
+    display: flex;
+    justify-content: space-between;
+       margin-bottom: 1rem;
+}
+
+.featured-post{
+    border-bottom: 1px solid #707070;
+    padding-bottom: 1.5rem;
+  
+}
+
+.featured-post .title-insights{
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.featured-post .post-insigts{
+    order: -2;
+}
+
+.post-img{
+    max-height: 240px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.post-insigts{
+    font: var(--subtitle-font);
+    font-weight: 300;
+    order: 2;
+    padding-top: 2px;
+}
+
+.post-title{
+    font: var(--title-font);
+    font-size: 1.5rem;;
+    color: var(--primary-color);
+   
+}
+
+.post-body{
+    font-weight:300;
+    margin-bottom: 1rem;
+}
+
+.continue-reading{
+    font: var(--subtitle-font);
+    color: var(--sub-text-color);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+}
+
 /* Font and color media queries (tablet and desktop) */
 
 @media (min-width: 480px){
@@ -172,7 +211,8 @@ Layout
     margin: 0 auto;
 }
 
-.container-flex{
+.container-nav,
+.container-main{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -184,14 +224,15 @@ Layout
 /*main header */
 
 .main-header{
-    padding: 2rem;
+    padding: 2.5rem;
+    margin-bottom: 3.5rem;
 }
 
 
 /*main header logo */
 
 .logo{
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
 }
 
 
@@ -201,7 +242,8 @@ Layout
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1rem;;
+    align-items: center;
+    gap: 2rem;
 }
 
 .main-header-nav-link{
@@ -217,7 +259,7 @@ Layout
 }
 
 @media (min-width: 768px){
-    .container-flex{
+    .container-nav{
         flex-direction: row;
     }
 

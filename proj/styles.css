@@ -1,0 +1,228 @@
+/* 
+Generally, navigations will be a ul wrapped in a nav to indicate that it is a navigation element. The li's will contain links
+
+
+*/
+
+
+/* 
+================
+Tag Hierarchy
+================
+*/
+
+/* 
+html:root
+    body
+        header.main-header
+            div.container
+                div.logo
+                    h1.logo-title
+                    p.logo-subtitle
+                nav.main-header-nav
+                    ul.main-header-nav-list
+                        li.main-header-nav-item.current 
+                            a.main-header-nav-link
+                        li.main-header-nav-item
+                            a.main-header-nav-link
+                        li.main-header-nav-item
+                            a.main-header-nav-link
+        main.main-content
+        footer.main-footer                   
+*/
+
+
+
+/* 
+================
+Fonts
+================
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+
+
+/* 
+================
+Variables
+================
+*/
+
+:root{
+    --bg-color: #f8f8f8;
+    --body-text-color: #707070;
+    --sub-text-color: #1792d2;
+    --primary-color: #143774;
+    --title-font: 400 2rem/1.4 "Lora", serif;
+    --subtitle-font: 700 .75rem/1.6 "Ubuntu", sans-serif;
+    --body-font: 700 1rem/1.6 "Ubuntu", sans-serif;
+}
+
+
+
+/* 
+================
+Defaults
+================
+*/
+
+html{
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: var(--body-text-color);
+    line-height: 1.6;
+    font: var(--body-font);
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a{
+    text-decoration: none;;
+}
+
+
+
+/* 
+================
+Font & Color
+================
+*/
+
+
+/*main header */
+
+.main-header{
+    background-color: var(--bg-color);
+}
+
+
+/*main header logo */
+
+.logo-title{
+    font: var(--title-font);
+    color: var(--primary-color);
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.logo-subtitle{
+    font: var(--subtitle-font);
+    color: var(--sub-text-color);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    text-align: center;
+}
+
+
+/*main header navigation */
+
+.main-header-nav-link{
+    color: var(--body-text-color);
+    text-transform: uppercase;
+}
+
+.main-header-nav-link:hover,
+.main-header-nav-link:focus{
+    color: var(--sub-text-color);
+}
+
+.current{
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.current:hover,
+.current:focus{
+    color: var(--body-color);
+}
+
+
+/* Font and color media queries (tablet and desktop) */
+
+@media (min-width: 480px){
+
+}
+
+@media (min-width: 768px){
+
+}
+
+
+
+/* 
+================
+Layout
+================
+*/
+
+.container{
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.container-flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+
+/*main header */
+
+.main-header{
+    padding: 2rem;
+}
+
+
+/*main header logo */
+
+.logo{
+    margin-bottom: 1rem;
+}
+
+
+/*main header navigation */
+
+.main-header-nav-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;;
+}
+
+.main-header-nav-link{
+    /* Makes links more clickable on small screens */
+    padding-block: .25rem;
+}
+
+
+/* Layout media queries (tablet and desktop) */
+
+@media (min-width: 480px){
+
+}
+
+@media (min-width: 768px){
+    .container-flex{
+        flex-direction: row;
+    }
+
+    .main-header-nav-list{
+        flex-direction: row;
+        align-items: center;
+    }
+}

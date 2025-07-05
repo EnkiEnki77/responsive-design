@@ -1,0 +1,234 @@
+/* 
+Percentages should be used for widths mostly.
+
+We have units relative to font-size (em, rem), and units relative to viewport size.
+(vw, vh, vmin, vmax).
+
+
+
+Images are inline elements, meaning they default to the size of themself.
+If you want an image to conform to the size of its pareent, you need to set its width 
+to 100% or use a flexbox/grid layout.
+
+Just make sure to only set the height or width, otherwise the image will be distorted.
+if youd like to set both, use the object-fit property to maintain aspect ratio.
+
+
+
+Min and max width/height work in tandem with width/height. Theyre especially useful
+when a percentage is used for width/height. The percentage allows the element to grow/
+shrink with the viewport, while the min/max width/height ensures there's boundaries so 
+it doesn't get too small or too large.
+
+
+
+em is a relative unit, it gets its value from the font size of the parent element.
+
+font-size is an inherited property, so if the parent has no font-size set, it gets
+it from higher in the DOM tree, until it reaches the root element (html). Default
+font-size of the root is 16px, so 1em = 16px.
+
+em is not the best option for font-sizes, because it's based on the font-size of the
+parent, if you use ems for all the font-sizes, it will cause an undesireable cascading 
+effect
+
+
+rem stands for root em, it gets its value from the font size of the root element (html).
+rem's therefore a better option for font-sizes, because it doesn't depend on the parent
+element's font-size, so you won't be getting that cascading effect. 
+
+Because there's one source of truth for rem, it makes it to where you can adjust that
+one value and it will affect all the rem values in your site. Great for resizing as
+the viewport changes. 
+
+
+
+Rule of thumb:
+- Use percentages for widths, especially in responsive design.
+- Use rem for font-sizes, because it doesn't depend on the parent element's font-size
+- Use em for padding/margin, em is only based on the parent font-size if youre setting
+  font-size of the element, for any other property, em's are based on the font-size of
+  the element itself. This is useful because if the font-size of the element changes,
+  the padding/margin will change accordingly, so that the whitespace always feels balanced
+  with the content.
+
+
+
+  Whenever you have a design where all the content is held in the middle of the screen
+  you should be using a container element with a max-width set. This eliminates the 
+  need to have a max width on and center each individual element.
+
+  Whenever you have a component very similar to another, maybe just with some aesthetic differences, make a modifier class.
+  for example, btn would have the styles every button has, and btn--primary would have the styles specific for a primary button.
+
+  Other than colors, another modifier class you might make is for the size. col-1, col-2, col-3, etc.
+
+  There are a couple ways you can add space between your columns in a lot. Factor the size of your columns to leave some left over
+  space, and then use justify content, or you can use gap.
+
+  
+  By default, align-items is stretch, which means the items will stretch to fill the cross-axis of the container. if you want items to take up only their content, set
+  it to flex-start, center, or flex-end.
+*/
+
+/* 
+################
+Tag Hierarchy
+################
+*/
+
+/* 
+html:root
+    body
+        div.container
+            h1
+            img
+            div.columns
+                section.col.col-1
+                    h2.section-title
+                    p.section-body
+                section.col.col-2
+                    h2.section-title
+                    p.section-body
+                    p.section-body
+                aside.col.col-1.col-bg
+                    p.aside-body
+            div.columns
+                section.col.col-3
+                    h2.section-title
+                    p.section-body
+                aside.col.col-1.col-bg
+                    p.aside-body
+*/
+
+
+
+/* 
+################
+Variables
+################
+*/
+
+:root {
+    --primary-color: #fff;
+    --text-color: #707070;
+    --sub-text-color: #b7832f;
+    --background-color: #312614;
+    --h1: 3rem;
+    --h2: 1.5rem;
+    --body: 1.125rem;
+    --container-width: 980px; /* Max width for the container */
+}
+
+
+
+/* 
+################
+Defaults
+################
+*/
+
+html{
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+
+
+/* 
+################
+Typography
+################
+*/
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--body);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--primary-color);
+}
+
+h1{
+  font-size: var(--h1);
+  text-align: center;
+  color: var(--background-color);
+}
+
+h1 span {
+  color: var(--sub-text-color);
+}
+
+h2 {
+  font-size: var(--h2);
+  color: var(--background-color);
+}
+
+.col-bg{
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  padding: 1rem;
+}
+
+
+
+/* 
+################
+Layout
+################
+*/
+
+img {
+  max-width: 100%;
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  /* Instead of doing padding, you could set width of container less than 100% to keep it off the sides of the viewport */
+  width: 90%;
+}
+
+.section-title,
+.col:nth-child(2) .section-body:first-of-type,
+.columns{
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 500px){
+  .columns {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .col-1{
+    width: 21.25%;
+  }
+
+  .col-2{
+    width: 47.5%;
+  }
+
+  .col-3{
+    width: 73.75%;
+  }
+
+  h1{
+    margin-block: 2rem;
+  }
+}
+
+
